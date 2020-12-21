@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block title %}My Form 2{% endblock %}
+{% block content %}
+<div class='col-md-6' style="margin: 0 auto;"></div>
+{% if success == True %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{successmsg}}</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endif %}
+  {% if error == True %}
+  {% for error in errors %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{error}}</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endif %}
+<form method="POST">
+    <p class = "text-muted">Note * Title should be capital</p>
+    {% csrf_token %}
+
+    {{form.as_ul}}
+    <button type="submit" class="btn-btn-primary" style="margin: 1rem auto 0 auto;display: block"></button>
+</form>
+{% endblock %}
